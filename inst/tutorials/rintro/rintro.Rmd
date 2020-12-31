@@ -20,7 +20,7 @@ turnout <- read.csv("http://qss.princeton.press/student-files/INTRO/turnout.csv"
 
 We are going to use the U.S. election turnout data set from Kosuke Imai's *Quantitative Social Science* book. This is available at the url: (http://qss.princeton.press/student-files/INTRO/turnout.csv)
 
-For the first exercise, load the data into R. You can do this either by downloading the file to your working directory, setting the working directory, and opening the file OR you can supply the read function directly with the url, with the url in quotations "http://qss.princeton.press/student-files/INTRO/turnout.csv"). Hint: note that it is a .csv file. Store the data as an object called `turnout`.
+For the first exercise, load the data into R. You can do this either by downloading the file to your working directory, setting the working directory, and opening the file OR you can avoid downloading the file by just supplying the read function directly with the url, with the url in quotations "http://qss.princeton.press/student-files/INTRO/turnout.csv"). Hint: note that it is a .csv file. Store the data as an object called `turnout`.
 
 Then, report how many rows and how many columns are in the data.
 
