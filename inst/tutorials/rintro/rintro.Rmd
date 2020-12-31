@@ -1,0 +1,137 @@
+---
+title: "R Introduction"
+output: learnr::tutorial
+runtime: shiny_prerendered
+---
+
+
+```{r setup, include=FALSE}
+library(learnr)
+knitr::opts_chunk$set(echo = FALSE)
+turnout <- read.csv("http://qss.princeton.press/student-files/INTRO/turnout.csv")
+```
+
+
+## Loading Data
+
+### Load and inspect data 
+
+*Here's an exercise to familiarize yourself with loading data in R*
+
+We are going to use the U.S. election turnout data set from Kosuke Imai's *Quantitative Social Science* book. This is available at the url: (http://qss.princeton.press/student-files/INTRO/turnout.csv)
+
+For the first exercise, load the data into R (you can supply the function with the url in quotations "http://qss.princeton.press/student-files/INTRO/turnout.csv"). Hint: note that it is a .csv file. Store the data as an object called `turnout`.
+
+Then, report how many rows and how many columns are in the data.
+
+```{r exercise1, exercise = TRUE}
+
+```
+
+
+```{r exercise1-solution}
+turnout <- read.csv("http://qss.princeton.press/student-files/INTRO/turnout.csv")
+nrow(turnout)
+ncol(turnout)
+```
+
+*Let's inspect the data*
+
+Show the first 6 rows of the `turnout` dataframe. Note how this is a rectangular dataset, where each column is a different variable, and each row corresponds to a different year's set of data.
+
+```{r previewdata, exercise=TRUE, exercise.lines = 1}
+
+```
+
+```{r previewdata-hint}
+head()
+```
+
+
+```{r previewdata-solution}
+head(turnout)
+```
+
+
+We can look at the names of the variables using the `names()` function in R. Each variable can be accessed by writing the name of the dataframe followed by a \$. Find the year variable. What year is in the second entry of this variable?
+
+```{r brackets, exercise = TRUE, exercise.lines = 4}
+names(turnout)
+
+```
+
+```{r brackets-solution}
+names(turnout)
+turnout$year[2]
+```
+
+## Summarizing Data
+
+
+### Taking the mean and standard deviation
+
+*Here's an exercise to perform basic summary functions.*
+
+Take the mean of the variable that represents the voting eligible population `VEP`. Then, take its standard deviation.
+
+```{r meanvep, exercise=TRUE, exercise.lines = 4}
+
+```
+
+```{r meanvep-solution}
+mean(turnout$VEP)
+sd(turnout$VEP)
+```
+
+## Manipulating Variables
+
+*Here's an exercise to start to combine and manipulate variables*
+
+Subtract felons and noncitizens from the voting age population. Store this as a new variable called `turnout$adjustedVAP`. Hint: you will need to use the assignment tool `<-` to store the variable. Compare the mean of the adjusted and unadjusted VAP.
+
+```{r newvar, exercise=TRUE, exercise.lines = 4}
+
+```
+
+```{r newvar-solution}
+turnout$adjustedVAP <- turnout$VAP - turnout$felons - turnout$noncit
+
+mean(turnout$VAP)
+mean(turnout$adjustedVAP)
+```
+
+Calculate the VEP turnout rate for each year by dividing the `total` turnout by VEP. What is the mean VEP turnout rate, as a percent?
+
+```{r division, exercise=TRUE, exercise.lines=5}
+
+```
+
+```{r division-solution}
+turnout$VEPrate <- turnout$total / turnout$VEP
+mean(turnout$VEPrate)*100
+```
+
+The `ANES` variable includes the turnout rate reported in a national survey each year. This is based on whether people self-report they voted, while the VEP rate is based on actual data. Compare the average turnout on the ANES with the average VEP rate you just calculated. Note: each exercise is independent, so if you want to use code from the previous exercise, you will need to paste it below.
+
+```{r anescompare, exercise=TRUE, exercise.lines=5}
+
+```
+
+
+```{r anescompare-solution}
+turnout$VEPrate <- turnout$total / turnout$VEP
+mean(turnout$VEPrate)*100
+
+mean(turnout$ANES)
+```
+
+
+
+```{r quiz}
+quiz(
+  question("What might be one reasonable interpretation?",
+    answer("People underreport their turnout on national surveys."),
+    answer("The rates are equal, suggesting the ANES and VEP rates reflect the same calculation"),
+    answer("People tend to overreport their turnout on national surveys.", correct = TRUE)
+  ))
+```

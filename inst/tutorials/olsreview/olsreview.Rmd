@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = FALSE)
 
 *Here's an exercise to familiarize yourself with the lm() command in R*
 
-Using the data mtcars, write the R code required to regress oil on water:
+Using the data mtcars, write the R code required to regress oil on water. Save it as an object called reg1.
 
 ```{r oil-on-water, exercise=TRUE}
 
